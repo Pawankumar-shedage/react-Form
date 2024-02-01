@@ -1,12 +1,12 @@
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import "./FormStyles/AttendieInformation.css";
 import * as Yup from "yup";
-import { useState } from "react";
+import { useRef, useState } from "react";
 
 // icons
 import { AiTwotoneExclamationCircle } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 export const AttendieInformation = () => {
@@ -22,7 +22,16 @@ export const AttendieInformation = () => {
       .required("Phone number is required"),
   });
 
+  // getting access to formik methods()
+  const formikRef = useRef(null);
+
   // clear form
+  const clearFormData = () => {
+    console.log("clear form called");
+    if (formikRef) {
+      formikRef.current.resetForm();
+    }
+  };
 
   // notify
   const notify = () => {
@@ -43,7 +52,13 @@ export const AttendieInformation = () => {
         {/* header */}
         <div className="form-header mb-3">
           <div className=" form-title text-start  fs-2  ">Attendee Details</div>
-          <div className="clear-form">Clear form</div>
+
+          {/* clear form */}
+          <div className="clear-form">
+            <span role="button" onClick={clearFormData}>
+              Clear form
+            </span>
+          </div>
         </div>
 
         <Formik
@@ -61,6 +76,7 @@ export const AttendieInformation = () => {
               setSubmitting(false); //now users can submit form data again,(btn is enabled)
             }, 400);
           }}
+          innerRef={formikRef}
         >
           {/* render prop-> sending function() as a child to a component. */}
 
@@ -198,7 +214,7 @@ export const AttendieInformation = () => {
               </div>
 
               {/* Submission */}
-              <div className="nav-buttons">
+              <div className="nav-buttons mt-4">
                 <div className="">
                   {/* not for first page */}
                   {/* <button className="my-btn ">

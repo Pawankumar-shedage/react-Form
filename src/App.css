@@ -1,3 +1,7 @@
+*{
+    box-sizing: border-box;
+}
+
 body{
     font-family: Roboto,RobotoDraft,Helvetica,Arial,sans-serif;
     /* background-color: #f0ebf8; */

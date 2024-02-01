@@ -77,3 +77,16 @@
     border-radius: 5px;
     cursor:not-allowed !important;
 }
+
+/* [2] page */
+.field-div-location{
+    background-color: rgb(255, 255, 255);
+    padding: 10px 10px;
+    border-radius: 10px;
+}
+
+.field-div-date{
+    background-color: rgb(255, 255, 255);
+    padding: 10px 10px;
+    border-radius: 10px;
+}
