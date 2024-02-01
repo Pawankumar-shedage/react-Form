@@ -1,0 +1,79 @@
+
+.attd-info-container{
+    width: 45%;
+    margin: auto;
+    font-family: Roboto,RobotoDraft,Helvetica,Arial,sans-serif;
+    /* border: 1px solid gray; */
+    padding: 20px;
+    overflow: hidden;
+}
+
+/* header */
+.form-header{
+    display: flex;
+    flex-direction:row;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
+    border-radius: 8px;
+    border-top: 8px solid  rgb(41, 137, 4);
+    padding: 20px;
+}
+
+.form-header .clear-form{
+    cursor: pointer;
+    padding: 5px 8px;
+    border-radius: 5px;
+}
+.clear-form:hover{
+    background-color:  #ccedcb;
+
+}
+
+
+/* Fields */
+
+.field-div{
+    background-color: rgb(255, 255, 255);
+    padding: 30px 20px;
+    border-radius: 10px;
+}
+
+.error-msg{
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: center;
+    padding-top: 3px;
+    font-size:small;
+    color: red;
+
+}
+
+
+/* Navigation */
+.nav-buttons{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-buttons .my-btn{
+    padding: 5px 0px;
+    min-width: 100px;
+    background-color: rgb(41, 137, 4);
+    color: rgb(255, 255, 255);
+    border: 1px solid gray;
+    border-radius: 5px;
+}
+
+.disabled-btn{
+    padding: 5px 0px;
+    min-width: 100px;
+    background-color: rgb(168, 168, 167);
+    color: rgb(255, 255, 255);
+    border: 1px solid gray;
+    border-radius: 5px;
+    cursor:not-allowed !important;
+}
