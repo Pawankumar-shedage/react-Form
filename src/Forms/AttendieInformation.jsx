@@ -75,7 +75,7 @@ export const AttendieInformation = ({ onNext }) => {
 
             setTimeout(() => {
               // next page
-              onNext();
+              onNext(values);
 
               notify();
               // alert(JSON.stringify(values, null, 3));

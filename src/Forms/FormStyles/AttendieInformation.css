@@ -147,7 +147,7 @@
 /* small */
 @media screen and (max-width:576px){
     .attd-info-container{
-        width: 100%;
+        width: 500%;
         height: max-content;
     }
     .form-header{

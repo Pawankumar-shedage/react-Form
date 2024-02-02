@@ -11,6 +11,7 @@ export const MultipageForm = () => {
   const [step, setStep] = useState(1);
 
   const handleNext = (data) => {
+    console.log("data ", data);
     setFormData({ ...formData, ...data });
     setStep(step + 1);
   };
