@@ -51,10 +51,12 @@ export const PaymentPage = ({ onPrevious, onNext }) => {
 
   // clear form
   const clearFormData = () => {
-    // console.log("clear form called");
+    console.log("clear form called");
     if (formikRef) {
       formikRef.current.resetForm();
     }
+
+    setFormData({});
   };
 
   // notify
@@ -82,7 +84,30 @@ export const PaymentPage = ({ onPrevious, onNext }) => {
         </div>
 
         <Formik
-          initialValues={formData}
+          initialValues={{
+            paymentMethodOption: formData.paymentMethodOption || "",
+            cardNumber: formData.cardNumber || "",
+            expirationDate: formData.expirationDate || "",
+            cvv: formData.cvv || "",
+            billingAddress: {
+              streetAddress:
+                (formData.billingAddress &&
+                  formData.billingAddress.streetAddress) ||
+                "",
+
+              city:
+                (formData.billingAddress && formData.billingAddress.city) || "",
+              state:
+                (formData.billingAddress && formData.billingAddress.state) ||
+                "",
+              zipCode:
+                (formData.billingAddress && formData.billingAddress.zipCode) ||
+                "",
+              country:
+                (formData.billingAddress && formData.billingAddress.country) ||
+                "",
+            },
+          }}
           validationSchema={validData}
           onSubmit={(values, { setSubmitting }) => {
             setFormData({ ...formData, ...values });

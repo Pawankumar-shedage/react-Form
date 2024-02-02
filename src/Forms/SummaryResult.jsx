@@ -21,9 +21,9 @@ export const SummaryResult = ({ onPrevious, onSubmit }) => {
 
         {/* Rest form data */}
         <div className="formData-div">
-          <div>
+          <div className="listItem d-flex flex-column justify-content-center align-items-start">
             {Object.entries(formData).map(([key, value], index) => (
-              <div key={index} className="listItem mb-3">
+              <div key={index} className=" mb-3">
                 {/* key */}
                 <div className="listItem-key">
                   <span>

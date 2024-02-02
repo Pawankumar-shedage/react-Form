@@ -14,10 +14,10 @@ function App() {
     <>
       <Routes>
         <Route path="/*" element={<MultipageForm />} />
-        <Route path="/attendieInfo" element={<AttendieInformation />} />
+        {/* <Route path="/attendieInfo" element={<AttendieInformation />} />
         <Route path="/eventDetails" element={<EventDetails />} />
         <Route path="/payment" element={<PaymentPage />} />
-        <Route path="/confirmation" element={<SummaryResult />} />
+        <Route path="/confirmation" element={<SummaryResult />} /> */}
       </Routes>
 
       {/* Global Toast container */}

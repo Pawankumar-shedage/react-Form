@@ -30,11 +30,11 @@ export const AttendieInformation = ({ onNext }) => {
   const clearFormData = () => {
     // console.log("clear form called", formikRef.current);
 
-    setFormData({ ...formData });
     // console.log(formData);
     if (formikRef) {
       formikRef.current.resetForm();
     }
+    setFormData({});
   };
 
   // notify
@@ -65,7 +65,11 @@ export const AttendieInformation = ({ onNext }) => {
         </div>
 
         <Formik
-          initialValues={formData}
+          initialValues={{
+            name: formData.name || "",
+            email: formData.email || "",
+            phone: formData.phone || "",
+          }}
           validationSchema={validData}
           onSubmit={(values, { setSubmitting }) => {
             setFormData({ ...formData, ...values });

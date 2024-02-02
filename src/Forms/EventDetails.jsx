@@ -31,6 +31,8 @@ export const EventDetails = ({ onPrevious, onNext }) => {
     if (formikRef) {
       formikRef.current.resetForm();
     }
+
+    setFormData({});
   };
 
   // notify
@@ -58,7 +60,12 @@ export const EventDetails = ({ onPrevious, onNext }) => {
         </div>
 
         <Formik
-          initialValues={formData}
+          initialValues={{
+            eventName: formData.eventName || "",
+            date: formData.date || "",
+            eventType: formData.eventType || "",
+            location: formData.location || "",
+          }}
           validationSchema={validData}
           onSubmit={(values, { setSubmitting }) => {
             setFormData({ ...formData, ...values });
