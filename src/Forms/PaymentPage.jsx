@@ -8,21 +8,10 @@ import { AiTwotoneExclamationCircle } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useFormData } from "./FormDataProvider";
 
-export const PaymentPage = () => {
-  const [formData, setFormData] = useState({
-    paymentMethodOption: "",
-    cardNumber: "",
-    expirationDate: "",
-    cvv: "",
-    billingAddress: {
-      streetAddress: "",
-      city: "",
-      state: "",
-      zipCode: "",
-      country: "",
-    },
-  });
+export const PaymentPage = ({ onPrevious, onNext }) => {
+  const { formData, setFormData } = useFormData();
 
   console.log("Current formData: ", formData);
 
@@ -77,15 +66,6 @@ export const PaymentPage = () => {
   // navigate
   const navigate = useNavigate();
 
-  const handleNext = () => {
-    navigate("/confirmation");
-  };
-
-  const handleBack = () => {
-    console.log("Going back");
-    navigate("/eventDetails");
-  };
-
   return (
     <>
       <div className="attd-info-container ">
@@ -105,11 +85,14 @@ export const PaymentPage = () => {
           initialValues={formData}
           validationSchema={validData}
           onSubmit={(values, { setSubmitting }) => {
-            setFormData(values);
+            setFormData({ ...formData, ...values });
+
+            // Storing form data in local storage
+            localStorage.setItem("paymentDetails", JSON.stringify(values));
 
             setTimeout(() => {
               // next page
-              handleNext();
+              onNext();
 
               notify();
               // alert(JSON.stringify(values, null, 3));
@@ -129,7 +112,10 @@ export const PaymentPage = () => {
                 </label>
 
                 <div className=" form-check d-flex flex-column justify-content-center align-items-start">
-                  <label htmlFor="paymentMethod" className="form-check-label ">
+                  <label
+                    htmlFor="paymentMethodOption"
+                    className="form-check-label "
+                  >
                     <Field
                       type="radio"
                       name="paymentMethodOption"
@@ -138,7 +124,10 @@ export const PaymentPage = () => {
                     />
                     Credit Card
                   </label>
-                  <label htmlFor="paymentMethod" className="form-check-label ">
+                  <label
+                    htmlFor="paymentMethodOption"
+                    className="form-check-label "
+                  >
                     <Field
                       type="radio"
                       name="paymentMethodOption"
@@ -147,7 +136,10 @@ export const PaymentPage = () => {
                     />
                     Debit Card
                   </label>
-                  <label htmlFor="paymentMethod" className="form-check-label ">
+                  <label
+                    htmlFor="paymentMethodOption"
+                    className="form-check-label "
+                  >
                     <Field
                       type="radio"
                       name="paymentMethodOption"
@@ -201,7 +193,12 @@ export const PaymentPage = () => {
                 <label htmlFor="cardNumber" className="form-label ">
                   Card number
                 </label>
-                <Field type="text" name="cardNumber" className="form-control" />
+                <Field
+                  type="text"
+                  name="cardNumber"
+                  placeholder="XXXXXX XX XXXX XXXX"
+                  className="form-control"
+                />
                 <ErrorMessage
                   name="cardNumber"
                   className="form-text"
@@ -251,6 +248,7 @@ export const PaymentPage = () => {
                     type="text"
                     name="expirationDate"
                     className="form-control"
+                    placeholder="MM/YY"
                   />
                   <ErrorMessage
                     name="expirationDate"
@@ -634,7 +632,7 @@ export const PaymentPage = () => {
                   <button
                     type="button"
                     className="my-btn "
-                    onClick={handleBack}
+                    onClick={onPrevious}
                   >
                     <span className="fw-semibold ">Back</span>
                   </button>

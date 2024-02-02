@@ -1,18 +1,79 @@
 import { useEffect, useState } from "react";
+import "./FormStyles/AttendieInformation.css";
+import { useFormData } from "./FormDataProvider";
 
-export const SummaryResult = () => {
-  const [formData, setFormData] = useState({});
-
-  console.log(formData);
+export const SummaryResult = ({ onPrevious, onSubmit }) => {
+  const { formData, setFormData } = useFormData();
 
   useEffect(() => {
-    const page1Data =
-      JSON.parse(localStorage.getItem("attendeeInformation")) || {};
-    const page2Data = JSON.parse(localStorage.getItem("eventDetails")) || {};
-    const page3Data = JSON.parse(localStorage.getItem("paymentDetails")) || {};
-
-    setFormData({ ...page1Data, ...page2Data, ...page3Data });
+    setFormData({ ...formData });
   }, []);
 
-  return <div>Summary registration data</div>;
+  console.log("All form Data: ", formData);
+
+  return (
+    <>
+      <div className="attd-info-container">
+        {/* header */}
+        <div className="form-header mb-3">
+          <div className=" form-title text-start  fs-2  ">Form Details</div>
+        </div>
+
+        {/* Rest form data */}
+        <div className="formData-div">
+          <div>
+            {Object.entries(formData).map(([key, value], index) => (
+              <div key={index} className="listItem mb-3">
+                {/* key */}
+                <div className="listItem-key">
+                  <span>
+                    <strong>{key}:</strong>
+                  </span>
+                </div>
+
+                {/* value */}
+                <div className="listItem-value">
+                  <span>
+                    {typeof value === "object" ? (
+                      Object.entries(value).map(([key, data], index) => (
+                        <div key={index} className="listItem-key mb-3">
+                          {/* key */}
+                          <div className="bAdd-listItem-key">
+                            <span>
+                              <strong>{key}:</strong>
+                            </span>
+                          </div>
+                          {/* data */}
+                          <div className="bAdd-listItem-value">
+                            <span>{data}</span>
+                          </div>
+                        </div>
+                      ))
+                    ) : (
+                      <span>{value}</span>
+                    )}
+                  </span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Submission */}
+        <div className="nav-buttons mt-4">
+          <div className="">
+            <button type="button" className="my-btn" onClick={onPrevious}>
+              <span className="fw-semibold ">Back</span>
+            </button>
+          </div>
+
+          <div className="">
+            <button type="button" className="my-btn" onClick={onSubmit}>
+              <span className="fw-semibold p-2">Confirm and Submit</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </>
+  );
 };

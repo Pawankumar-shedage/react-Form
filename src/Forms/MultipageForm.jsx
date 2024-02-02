@@ -3,9 +3,11 @@ import { AttendieInformation } from "./AttendieInformation";
 import { EventDetails } from "./EventDetails";
 import { PaymentPage } from "./PaymentPage";
 import { SummaryResult } from "./SummaryResult";
+import { toast } from "react-toastify";
+import { useFormData } from "./FormDataProvider";
 
 export const MultipageForm = () => {
-  const [formData, setFormData] = useState({});
+  const { formData, setFormData } = useFormData();
   const [step, setStep] = useState(1);
 
   const handleNext = (data) => {
@@ -20,7 +22,13 @@ export const MultipageForm = () => {
 
   const handleSubmit = () => {
     // Submit form data
-    console.log("Form submitted:", formData);
+    toast.success("Form details submitted successfully");
+
+    //Now navigating user back to event registration (new) & clearing Formdata
+    localStorage.clear();
+    setFormData({});
+    setStep(1);
+    console.log("Form Data:", formData);
   };
 
   return (

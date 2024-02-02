@@ -8,14 +8,10 @@ import { AiTwotoneExclamationCircle } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useFormData } from "./FormDataProvider";
 
-export const EventDetails = () => {
-  const [formData, setFormData] = useState({
-    eventName: "",
-    date: "",
-    location: "",
-    eventType: "",
-  });
+export const EventDetails = ({ onPrevious, onNext }) => {
+  const { formData, setFormData } = useFormData();
   console.log(formData);
 
   // data rules
@@ -46,10 +42,6 @@ export const EventDetails = () => {
   // navigate
   const navigate = useNavigate();
 
-  const forwardToNextPage = () => {
-    navigate("/payment");
-  };
-
   return (
     <>
       <div className="attd-info-container ">
@@ -69,11 +61,14 @@ export const EventDetails = () => {
           initialValues={formData}
           validationSchema={validData}
           onSubmit={(values, { setSubmitting }) => {
-            setFormData(values);
+            setFormData({ ...formData, ...values });
+
+            // Storing formdata to local storage
+            localStorage.setItem("eventDetails", JSON.stringify(values));
 
             setTimeout(() => {
               // next page
-              forwardToNextPage();
+              onNext();
 
               notify();
               // alert(JSON.stringify(values, null, 3));
@@ -284,12 +279,7 @@ export const EventDetails = () => {
               {/*--NAV BTNS-- Submission */}
               <div className="nav-buttons mt-4">
                 <div className="">
-                  <button
-                    className="my-btn"
-                    onClick={() => {
-                      navigate("/");
-                    }}
-                  >
+                  <button className="my-btn" onClick={onPrevious}>
                     <span className="fw-semibold ">Back</span>
                   </button>
                 </div>

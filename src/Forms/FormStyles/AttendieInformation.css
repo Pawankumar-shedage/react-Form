@@ -1,11 +1,25 @@
 
 .attd-info-container{
     width: 45%;
+    height: auto;
     margin: auto;
     font-family: Roboto,RobotoDraft,Helvetica,Arial,sans-serif;
     /* border: 1px solid gray; */
     padding: 20px;
     overflow: hidden;
+}
+
+/* 1st pg header */
+.form-header-1{
+    display: flex;
+    flex-direction:row;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #ccedcb;
+    border-radius: 8px;
+    padding: 20px;
+    overflow: hidden;
+    font-size:auto;
 }
 
 /* header */
@@ -18,6 +32,8 @@
     border-radius: 8px;
     border-top: 8px solid  rgb(41, 137, 4);
     padding: 20px;
+    overflow: hidden;
+    font-size:auto;
 }
 
 .form-header .clear-form{
@@ -89,4 +105,67 @@
     background-color: rgb(255, 255, 255);
     padding: 10px 10px;
     border-radius: 10px;
+}
+
+/* Summary */
+.listItem{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: #fff;
+    padding: 10px 5px;
+    border-radius: 5px  ;
+    overflow: hidden;
+}
+
+.listItem-key{
+    padding: 2px 5px;
+    background-color: #fff;
+
+}
+
+.listItem-value{
+    padding: 2px 5px;
+    background-color: #fff;
+
+}
+
+.bAdd-listItem-key{
+    padding: 2px 5px;
+    background-color: #fff;
+}
+.bAdd-listItem-value{
+    padding: 2px 5px;
+    background-color: #fff;
+}
+
+
+
+/* MEDIA queries */
+
+/* small */
+@media screen and (max-width:576px){
+    .attd-info-container{
+        width: 100%;
+        height: max-content;
+    }
+    .form-header{
+        font-size: 20%;
+    }
+}
+/* medium */
+@media screen and (max-width:768px){
+    .attd-info-container{
+        width: 100%;
+        height: max-content;
+    }
+}
+
+/* large */
+@media screen and (max-width:992px){
+    .attd-info-container{
+        width: 75%;
+        height: max-content;
+    }
 }

@@ -8,10 +8,11 @@ import { AiTwotoneExclamationCircle } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useFormData } from "./FormDataProvider";
 
-export const AttendieInformation = () => {
-  const [formData, setFormData] = useState({ name: "", email: "", phone: "" });
-  console.log(formData);
+export const AttendieInformation = ({ onNext }) => {
+  const { formData, setFormData } = useFormData();
+  // console.log(formData);
 
   // data rules
   const validData = Yup.object().shape({
@@ -27,7 +28,10 @@ export const AttendieInformation = () => {
 
   // clear form
   const clearFormData = () => {
-    console.log("clear form called");
+    console.log("clear form called", formikRef.current);
+
+    setFormData({ ...formData });
+    console.log(formData);
     if (formikRef) {
       formikRef.current.resetForm();
     }
@@ -39,17 +43,16 @@ export const AttendieInformation = () => {
     toast.success("Detils submitted successfully!");
   };
 
-  // navigate
-  const navigate = useNavigate();
-
-  const forwardToEventDetails = () => {
-    navigate("/eventDetails");
-  };
-
   return (
     <>
       <div className="attd-info-container ">
-        {/* header */}
+        {/* header1 */}
+        <div className="form-header-1 mb-3">
+          <div className=" form-title text-start  fs-2  ">
+            Event Registration
+          </div>
+        </div>
+        {/* header2 */}
         <div className="form-header mb-3">
           <div className=" form-title text-start  fs-2  ">Attendee Details</div>
 
@@ -65,11 +68,14 @@ export const AttendieInformation = () => {
           initialValues={formData}
           validationSchema={validData}
           onSubmit={(values, { setSubmitting }) => {
-            setFormData(values);
+            setFormData({ ...formData, ...values });
+
+            // setting form data to Local Storage
+            localStorage.setItem("attendeeInformation", JSON.stringify(values));
 
             setTimeout(() => {
               // next page
-              forwardToEventDetails();
+              onNext();
 
               notify();
               // alert(JSON.stringify(values, null, 3));
@@ -77,6 +83,7 @@ export const AttendieInformation = () => {
             }, 400);
           }}
           innerRef={formikRef}
+          enableReinitialize
         >
           {/* render prop-> sending function() as a child to a component. */}
 
