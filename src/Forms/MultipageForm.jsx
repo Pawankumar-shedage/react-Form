@@ -15,7 +15,7 @@ export const MultipageForm = () => {
     setStep(step + 1);
   };
 
-  console.log(formData);
+  // console.log(formData);
   const handlePrevious = () => {
     setStep(step - 1);
   };
@@ -28,7 +28,7 @@ export const MultipageForm = () => {
     localStorage.clear();
     setFormData({});
     setStep(1);
-    console.log("Form Data:", formData);
+    // console.log("Form Data:", formData);
   };
 
   return (

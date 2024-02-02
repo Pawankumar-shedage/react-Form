@@ -28,10 +28,10 @@ export const AttendieInformation = ({ onNext }) => {
 
   // clear form
   const clearFormData = () => {
-    console.log("clear form called", formikRef.current);
+    // console.log("clear form called", formikRef.current);
 
     setFormData({ ...formData });
-    console.log(formData);
+    // console.log(formData);
     if (formikRef) {
       formikRef.current.resetForm();
     }
@@ -39,7 +39,7 @@ export const AttendieInformation = ({ onNext }) => {
 
   // notify
   const notify = () => {
-    console.log("Notfiyf");
+    // console.log("Notfiyf");
     toast.success("Detils submitted successfully!");
   };
 

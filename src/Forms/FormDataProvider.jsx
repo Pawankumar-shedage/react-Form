@@ -5,7 +5,7 @@ const FormDataContext = createContext();
 export const FormDataProvider = ({ children }) => {
   const [formData, setFormData] = useState({});
 
-  console.log(formData);
+  //   console.log(formData);
 
   return (
     <>

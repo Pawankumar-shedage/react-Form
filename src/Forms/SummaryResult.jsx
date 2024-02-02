@@ -9,7 +9,7 @@ export const SummaryResult = ({ onPrevious, onSubmit }) => {
     setFormData({ ...formData });
   }, []);
 
-  console.log("All form Data: ", formData);
+  // console.log("All form Data: ", formData);
 
   return (
     <>

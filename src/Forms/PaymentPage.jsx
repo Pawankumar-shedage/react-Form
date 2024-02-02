@@ -13,7 +13,7 @@ import { useFormData } from "./FormDataProvider";
 export const PaymentPage = ({ onPrevious, onNext }) => {
   const { formData, setFormData } = useFormData();
 
-  console.log("Current formData: ", formData);
+  // console.log("Current formData: ", formData);
 
   // Data rules
 
@@ -51,7 +51,7 @@ export const PaymentPage = ({ onPrevious, onNext }) => {
 
   // clear form
   const clearFormData = () => {
-    console.log("clear form called");
+    // console.log("clear form called");
     if (formikRef) {
       formikRef.current.resetForm();
     }
@@ -59,7 +59,7 @@ export const PaymentPage = ({ onPrevious, onNext }) => {
 
   // notify
   const notify = () => {
-    console.log("Notfiyf");
+    // console.log("Notfiyf");
     toast.success("Detils submitted successfully!");
   };
 

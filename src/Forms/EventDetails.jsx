@@ -12,7 +12,7 @@ import { useFormData } from "./FormDataProvider";
 
 export const EventDetails = ({ onPrevious, onNext }) => {
   const { formData, setFormData } = useFormData();
-  console.log(formData);
+  // console.log(formData);
 
   // data rules
   const validData = Yup.object().shape({
@@ -27,7 +27,7 @@ export const EventDetails = ({ onPrevious, onNext }) => {
 
   // clear form
   const clearFormData = () => {
-    console.log("clear form called");
+    // console.log("clear form called");
     if (formikRef) {
       formikRef.current.resetForm();
     }
@@ -35,7 +35,7 @@ export const EventDetails = ({ onPrevious, onNext }) => {
 
   // notify
   const notify = () => {
-    console.log("Notfiyf");
+    // console.log("Notfiyf");
     toast.success("Detils submitted successfully!");
   };
 
